@@ -7,12 +7,12 @@ using System.Text;
 
 namespace DataAcces.Concrete.InMemory
 {
-    public class InMemoryProdutDal : IProductDal
+    public class InMemoryProductDal : IProductDal
 
     {
         //değişken oluşturuldu
         List<Product> _products;
-        public InMemoryProdutDal()
+        public InMemoryProductDal()
         { //Oracle,Sql Server,Postgres,MongoDb
             _products = new List<Product> {
             new Product{ ProductId=1,CategoryId=1,ProductName="Masa",UnitPrice=100,UnitInStock=12},
@@ -38,11 +38,18 @@ namespace DataAcces.Concrete.InMemory
             productToDelete = _products.SingleOrDefault(p=>p.ProductId==product.ProductId);
 
             _products.Remove(productToDelete);
+            Console.WriteLine("Silme İşlemi Gerçekleşti");
         }
 
         public List<Product> GetAll() //tümünü döndür
         {
             return _products;
+          
+        }
+
+        public List<Product> GetAllByCategory(int categoryId)
+        {//Where yeni bir liste haline getirir ve onu döndürür
+          return  _products.Where(p => p.CategoryId == categoryId).ToList();
         }
 
         public void Update(Product product)
@@ -53,6 +60,7 @@ namespace DataAcces.Concrete.InMemory
             productToUpdate.CategoryId = product.CategoryId;
             productToUpdate.UnitPrice = product.UnitPrice;
             productToUpdate.UnitInStock = product.UnitInStock;
+            Console.WriteLine("Güncellendi");
 
         }
     }

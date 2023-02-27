@@ -17,7 +17,8 @@ namespace DataAcces.Abstract
         void Update(Product product);
         //Veri Sil
         void Delete(Product product);
-
+        //Productları category id'sine göre listele
+        List<Product> GetAllByCategory(int categoryId);
 
     }
 }
