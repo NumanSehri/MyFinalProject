@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAcces.Concrete.InMemory
@@ -10,7 +11,7 @@ namespace DataAcces.Concrete.InMemory
     public class InMemoryProductDal : IProductDal
 
     {
-        //değişken oluşturuldu
+        //değişken oluşturuldu-injection yapıldı
         List<Product> _products;
         public InMemoryProductDal()
         { //Oracle,Sql Server,Postgres,MongoDb
@@ -41,10 +42,20 @@ namespace DataAcces.Concrete.InMemory
             Console.WriteLine("Silme İşlemi Gerçekleşti");
         }
 
+        public Product Get()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAll() //tümünü döndür
         {
             return _products;
           
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Product> GetAllByCategory(int categoryId)

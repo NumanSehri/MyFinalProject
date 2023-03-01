@@ -5,11 +5,7 @@ using System.Text;
 
 namespace DataAcces.Abstract
 {
-
-    //Product ile yapacağım işlemler burda imzalanır
-    public interface IProductDal:IEntityRepository<Product>
+    public interface ICustomerDal:IEntityRepository<Customer>
     {
-        
-
     }
 }
