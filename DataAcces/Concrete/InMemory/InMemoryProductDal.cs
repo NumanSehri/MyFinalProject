@@ -16,11 +16,11 @@ namespace DataAcces.Concrete.InMemory
         public InMemoryProductDal()
         { //Oracle,Sql Server,Postgres,MongoDb
             _products = new List<Product> {
-            new Product{ ProductId=1,CategoryId=1,ProductName="Masa",UnitPrice=100,UnitInStock=12},
-           new Product{ ProductId=2,CategoryId=1,ProductName="Sandalye",UnitPrice=80,UnitInStock=20},
-            new Product{ ProductId=3,CategoryId=2,ProductName="Telefon",UnitPrice=550,UnitInStock=5},
-            new Product{ ProductId=4,CategoryId=2,ProductName="Kılıf",UnitPrice=30,UnitInStock=25},
-            new Product{ ProductId=5,CategoryId=2,ProductName="Kamera",UnitPrice=400,UnitInStock=3}};
+            new Product{ ProductId=1,CategoryId=1,ProductName="Masa",UnitPrice=100,UnitsInStock=12},
+           new Product{ ProductId=2,CategoryId=1,ProductName="Sandalye",UnitPrice=80,UnitsInStock=20},
+            new Product{ ProductId=3,CategoryId=2,ProductName="Telefon",UnitPrice=550,UnitsInStock=5},
+            new Product{ ProductId=4,CategoryId=2,ProductName="Kılıf",UnitPrice=30,UnitsInStock=25},
+            new Product{ ProductId=5,CategoryId=2,ProductName="Kamera",UnitPrice=400,UnitsInStock=3}};
         }
         public void Add(Product product)
         {
@@ -42,16 +42,14 @@ namespace DataAcces.Concrete.InMemory
             Console.WriteLine("Silme İşlemi Gerçekleşti");
         }
 
-        public Product Get()
+       
+
+        public Product Get(Expression<Func<Product, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<Product> GetAll() //tümünü döndür
-        {
-            return _products;
-          
-        }
+        
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
@@ -70,7 +68,7 @@ namespace DataAcces.Concrete.InMemory
             productToUpdate.ProductName = product.ProductName;
             productToUpdate.CategoryId = product.CategoryId;
             productToUpdate.UnitPrice = product.UnitPrice;
-            productToUpdate.UnitInStock = product.UnitInStock;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
             Console.WriteLine("Güncellendi");
 
         }

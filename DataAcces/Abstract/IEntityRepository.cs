@@ -16,7 +16,7 @@ namespace DataAcces.Abstract
         // verileri listele
         List<T> GetAll(Expression<Func<T,bool>> filter=null);
 
-        T Get();
+        T Get(Expression<Func<T, bool>> filter);
 
 
         //Veri Ekle
