@@ -10,17 +10,23 @@ using System.Text;
 
 namespace DataAcces.Concrete.EntityFramework
 {
+
+    
     //NuGet
     public class EfProductDal : IProductDal
     {
+
+        //NorthwindContext northwindContext = new NorthwindContext();
+            
         public void Add(Product entity)
-        {
+        {                        
             //IDısposable pattern implementation of C#- c# özgü yapı using
-            //işi bitince bellk temizlenir, hız aısından önemli
-            using (NorthwindContext context=new NorthwindContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
+            //işi bitince bellek temizlenir, hız açısından önemli
+
+            using (NorthwindContext context = new NorthwindContext())
+            {       //değişken- veritabanından
+                var AddEntity = context.Entry(entity);
+                AddEntity.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
@@ -43,7 +49,7 @@ namespace DataAcces.Concrete.EntityFramework
                 return context.Set<Product>().SingleOrDefault(filter);
             }
         }
-
+         
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         
        {

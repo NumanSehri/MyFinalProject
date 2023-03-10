@@ -1,11 +1,10 @@
-﻿using Entities.Abstract;
-using Entities.Concrete;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAcces.Abstract
+namespace Core.DataAccess
 {
     //--------------------------------------Generic Constrait-Kısıtlama 
     // class : referans tip olabilir, where T : clas,
