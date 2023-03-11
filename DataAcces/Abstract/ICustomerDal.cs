@@ -8,5 +8,7 @@ namespace DataAcces.Abstract
 {
     public interface ICustomerDal:IEntityRepository<Customer>
     {
+        List<Customer> GetByCustomerId(int Id);
+
     }
 }
