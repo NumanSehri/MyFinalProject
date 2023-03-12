@@ -28,7 +28,12 @@ namespace ConsolUI
                 Console.WriteLine("Kategori Id İle Eşleşen Kategori Adı : " + item.CategoryName);
             }
 
+            ProductManager productManager=new ProductManager(new EfProductDal());
 
+            foreach (var pro   in productManager.GetProductDetails())
+            {
+                Console.WriteLine("Ürün adı : "+ pro.ProductName + " ---Kategori Adı : " + pro.CategoryName);
+            }
 
         }
 
