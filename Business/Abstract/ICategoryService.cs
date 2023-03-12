@@ -8,6 +8,6 @@ namespace Business.Abstract
    public interface ICategoryService
     {
         List<Category> GetAll();
-        Category GetById(int categoryId); //Tek Id çekeceği için list tanımlamıyoruz
+        List<Category> GetById(int categoryId); //Tek Id çekeceği için list tanımlamıyoruz
     }
 }

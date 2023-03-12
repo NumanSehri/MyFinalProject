@@ -9,16 +9,20 @@ namespace ConsolUI
     class Program
     {
         static void Main(string[] args)
-        {
+        {   //IoC öğrenildiğinde newlenmeyecek 12.03.2023
             //ProductTest();
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
             foreach (var category in categoryManager.GetAll())
             {
-                Console.WriteLine("Kategori İd : {0} ------- Kategori Adı :  {1}",category.CategoryId,category.CategoryName);
+                Console.WriteLine("Kategori İd : {0} ------- Kategori Adı :  {1}",category.CategoryID,category.CategoryName);
 
             }
 
+            foreach (var item in categoryManager.GetById(3))
+            {
+                Console.WriteLine("Kategori Id İle Eşleşen Kategori Adı : " + item.CategoryName);
+            }
 
 
 

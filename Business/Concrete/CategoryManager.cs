@@ -21,13 +21,18 @@ namespace Business.Concrete
             return _categoryDal.GetAll();
         }
 
-        // select * from categories where CategoryId=3
-        public Category GetById(int categoryId)
+        public List<Category> GetById(int categoryId)
         {
+            return _categoryDal.GetAll(c => c.CategoryID == categoryId);
             //İş Kodları
-            return _categoryDal.Get(c => c.CategoryId == categoryId);
+
             //veritabanından gelen category ıd ile dışardan verilen
             //categoryıd eşitse o category ıd bağlı verileri getir.
         }
+
+        // select * from categories where CategoryId=3
+
+
+
     }
 }
