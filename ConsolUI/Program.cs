@@ -9,7 +9,11 @@ namespace ConsolUI
     class Program
     {
         static void Main(string[] args)
-        {   //IoC öğrenildiğinde newlenmeyecek 12.03.2023
+        {   
+            
+            
+            //Data Transformnation Object
+            //IoC öğrenildiğinde newlenmeyecek 12.03.2023
             //ProductTest();
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
