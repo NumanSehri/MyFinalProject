@@ -10,9 +10,6 @@ namespace DataAcces.Concrete.EntityFramework
     public class EfCustomerDal : EfEntityRepositoryBase<Customer, NorthwindContext>, ICustomerDal
 
     {
-        public List<Customer> GetByCustomerId(int Id)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
