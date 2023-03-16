@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities;
 using Core.Utilities.Results;
 using DataAcces.Abstract;
@@ -6,7 +7,6 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -26,34 +26,53 @@ namespace Business.Concrete
             //Business Code,
             if (product.ProductName.Length<2)
             {
-                return new ErrorResult("Ürün ismi en az 2 karakter olmalıdır");
+                return new ErrorResult(Messages.ProductNameInvalid);
 
             }
              _productDal.Add(product);
-            return new Result(true,"ürün Eklendi");
+
+            return new SuccessResult(Messages.ProductAdded);        }
+
+        public IResult Delete(Product product)
+        {
+            
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
             // İş Kodları
             //Yetkisi Varmı
 
-            return _productDal.GetAll();
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorResult(false,Messages.ProductNameInvalid);
+            }
+
+            return new DataResult<List<Product>>(_productDal.GetAll(),true,Messages.ProductListed);
+
         }
 
-        public List<Product> GetAllCategoryId(int id)
+        public IDataResult<List<Product>> GetAllCategoryId(int id)
         {
             return _productDal.GetAll(p => p.CategoryId == id);
         }
 
-        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
             return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
         }
 
-        public List<ProductDetailDto> GetProductDetails()
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
             return _productDal.GetProductDetails();
+        }
+
+        public IResult Update(Product product)
+        {
+            _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdate);
         }
     }
 }
