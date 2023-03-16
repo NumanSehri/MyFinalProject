@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Utilities;
+using Core.Utilities.Results;
 using DataAcces.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -15,15 +17,20 @@ namespace Business.Concrete
         //Injection
         public ProductManager(IProductDal productDal)
         {
+
             _productDal = productDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
             //Business Code,
-            
-            
-            _productDal.Add(product);
+            if (product.ProductName.Length<2)
+            {
+                return new ErrorResult("Ürün ismi en az 2 karakter olmalıdır");
+
+            }
+             _productDal.Add(product);
+            return new Result(true,"ürün Eklendi");
         }
 
         public List<Product> GetAll()
