@@ -12,12 +12,12 @@ namespace ConsolUI
         {
             //Data Transformnation Object
             //IoC öğrenildiğinde newlenmeyecek 12.03.2023
-            //ProductTest();
-            CategoyTest();
+            ProductTest();
+            //CategoyTest();
             
             
 
-            //CustomerManager customerManager=new CustomerManager(new EfCustomerDal());
+            //CustomerManager customer1     Manager=new CustomerManager(new EfCustomerDal());
 
             //foreach (var customer in customerManager.GetByCustomerId("GALED"))
             //{
@@ -43,7 +43,7 @@ namespace ConsolUI
 
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var pro in productManager.GetProductDetails())
+            foreach (var pro in productManager.GetProductDetails().Data)
             {
                 Console.WriteLine("Ürün adı : " + pro.ProductName + " ---Kategori Adı : " + pro.CategoryName);
             }
@@ -53,22 +53,36 @@ namespace ConsolUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
+            var result = productManager.GetProductDetails();
 
-            foreach (var byUnitPrie in productManager.GetByUnitPrice(50, 100))
+            if (result.Succes==false)
             {
-                Console.WriteLine("Değeri En az 50 En Fazla 100 olan Ürünler : {0}", byUnitPrie.ProductName);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + " / " + product.CategoryName);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(result.Messages);
             }
 
-            foreach (var ıd in productManager.GetAllCategoryId(2))
+            //foreach (var byUnitPrie in productManager.GetByUnitPrice(50, 100).Data)
+            //{
+            //    Console.WriteLine("Değeri En az 50 En Fazla 100 olan Ürünler : {0}", byUnitPrie.ProductName);
+            //}
 
-            {
-                Console.WriteLine("Id : {0}------ Ürün Adı :  {1}--- İstenilen Katagori Id göre Sıralar", ıd.CategoryId, ıd.ProductName);
-            }
+            //foreach (var ıd in productManager.GetAllCategoryId(2).Data)
 
-            foreach (var product in productManager.GetAll())
-            {
-                Console.WriteLine("Tüm ürünlerin aları : {0}", product.ProductName);
-            }
+            //{
+            //    Console.WriteLine("Id : {0}------ Ürün Adı :  {1}--- İstenilen Katagori Id göre Sıralar", ıd.CategoryId, ıd.ProductName);
+            //}
+
+            //foreach (var product in productManager.GetAll().Data)
+            //{
+            //    Console.WriteLine("Tüm ürünlerin aları : {0}", product.ProductName);
+            //}
 
             Console.WriteLine("Hello World!");
         }

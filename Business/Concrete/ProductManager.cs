@@ -47,26 +47,30 @@ namespace Business.Concrete
 
             if (DateTime.Now.Hour==22)
             {
-                return new ErrorResult(false,Messages.ProductNameInvalid);
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
 
-            return new DataResult<List<Product>>(_productDal.GetAll(),true,Messages.ProductListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductListed);
 
         }
 
         public IDataResult<List<Product>> GetAllCategoryId(int id)
         {
-            return _productDal.GetAll(p => p.CategoryId == id);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id),Messages.ProductListed);
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max),Messages.ProductListed);
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            return _productDal.GetProductDetails();
+            if (DateTime.Now.Hour==21)
+            {
+                return new ErrorDataResult<List < ProductDetailDto >> (Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(),Messages.ProductListed);
         }
 
         public IResult Update(Product product)

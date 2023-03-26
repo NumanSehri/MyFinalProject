@@ -7,5 +7,6 @@
         public static string ProductDeleted = "Ürün Silindi";
         public static string ProductUpdate = "Ürün Güncellendi";
         public static string ProductListed = "Ürünler Listelendi";
+        public static string MaintenanceTime = "Bakım Zamanı";
     }
 }
