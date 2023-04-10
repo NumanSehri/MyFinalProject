@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {

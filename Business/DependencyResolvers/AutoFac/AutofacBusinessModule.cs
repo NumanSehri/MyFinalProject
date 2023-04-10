@@ -16,6 +16,6 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
-        }
+        } //Program.cs içine tanımlanır. Autofac ve autofac.extra.dynamic kurulmalı
     }
 }
