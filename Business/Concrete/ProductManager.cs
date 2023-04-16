@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Mappings;
 using Business.ValidationRules.FluentValidation;
 using Core.CrosCutingConcerns.Validations;
 using Core.Utilities;
@@ -35,6 +36,7 @@ namespace Business.Concrete
             //peformans
             //transaction
             //yetkilendirme
+           
 
             _productDal.Add(product);
 
@@ -85,5 +87,9 @@ namespace Business.Concrete
             _productDal.Update(product);
             return new SuccessResult(Messages.ProductUpdate);
         }
+    }
+
+    internal class T
+    {
     }
 }

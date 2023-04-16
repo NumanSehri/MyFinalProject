@@ -13,7 +13,7 @@ namespace DataAcces.Abstract
     {
 
         List<ProductDetailDto> GetProductDetails();
-
+        
     }
 }
 

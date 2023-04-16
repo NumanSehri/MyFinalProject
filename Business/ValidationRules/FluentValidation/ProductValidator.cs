@@ -8,7 +8,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public ProductValidator()
         {
-            RuleFor(p => p.ProductName).NotEmpty();//boş olamaz
+            RuleFor(p => p.ProductName).NotEmpty().NotNull().WithMessage("Ürün Adı Boş Olamaz");//boş olamaz
             RuleFor(p => p.ProductName).MinimumLength(2);//2 karakterden az olamaz
             RuleFor(p => p.UnitPrice).NotEmpty();//boş olamaz
             RuleFor(p => p.UnitPrice).GreaterThan(0); //0 dan büyük olmalı
